@@ -2,7 +2,7 @@
 
 const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 
-/* 
+
 
   // GIVEN THIS PROBLEM:
 
@@ -36,34 +36,71 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 
   const test2 = firstItem(items, logExorbitantPrice);
   console.log(test2); // "this Pencil is worth a million dollars!"
-*/
+
+
+  // getLength passes the length of the array into the callback.
+
+  // last passes the last item of the array into the callback.
+
+  // sumNums adds two numbers (x, y) and passes the result to the callback.
+
+  // multiplyNums multiplies two numbers and passes the result to the callback.
+
+  // contains checks if an item is present inside of the given array/list.
+  // Pass true to the callback if it is, otherwise pass false.
 
 
 function getLength(arr, cb) {
-  // getLength passes the length of the array into the callback.
+  return cb(arr.length);
 }
+
+const test3 = getLength(items, item => `The array is ${item} items long!`);
+  console.log(test3); 
 
 function last(arr, cb) {
-  // last passes the last item of the array into the callback.
+  return cb(arr[arr.length-1]);
 }
+
+const test4 = last(items, item => `I love my ${item}!`);
+  console.log(test4); 
 
 function sumNums(x, y, cb) {
-  // sumNums adds two numbers (x, y) and passes the result to the callback.
+  return cb(x + y);
 }
+
+const test5 = sumNums(5, 6, item => `The sum of the two numbers is ${item}!`)
+  console.log(test5);
 
 function multiplyNums(x, y, cb) {
-  // multiplyNums multiplies two numbers and passes the result to the callback.
+  return cb(x * y);
 }
+
+const test6 = multiplyNums(7, 8, item => `The product of the two numbers is ${item}!`)
+  console.log(test6);
 
 function contains(item, list, cb) {
-  // contains checks if an item is present inside of the given array/list.
-  // Pass true to the callback if it is, otherwise pass false.
+  if (list.includes(item)) {
+    return cb(true);
+  } else return cb(false);
 }
 
+const test7 = contains('yo-yo', items, item => `${item}!`)
+  console.log(test7);
+
+
+
 /* STRETCH PROBLEM */
+
+const items2 = ['Pencil', 'Notebook', 'yo-yo', 'Gum', 'Gum', 'Notebook'];
 
 function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  let dupFree = array.filter((item, index) => array.indexOf(item) === index);
+  return cb(dupFree);
 }
+
+const test8 = removeDuplicates(items2, item => `${item}`)
+
+console.log(test8);
